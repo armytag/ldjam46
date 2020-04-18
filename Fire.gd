@@ -2,8 +2,9 @@ extends Light2D
 
 export (float) var MAX_OFFSET
 export (float) var FLICKER_CHANGE
-var offset_from_flicker = Vector2()
-
+export (float) var BURN_SPEED
+var flicker_offset = Vector2()
+var fuel_left = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +13,27 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	offset_from_flicker.x += rand_range(-FLICKER_CHANGE, FLICKER_CHANGE)
-	offset_from_flicker.y += rand_range(-FLICKER_CHANGE, FLICKER_CHANGE)
+	var scale_factor = min(3.0, 1.0*fuel_left + 0.5)
+	scale = Vector2(scale_factor, scale_factor)
+	energy = min(1.2, fuel_left)
+	$FireCrackle.volume_db = min( 18.0, (fuel_left-1.0)*10.0 )
+	print($FireCrackle.volume_db)
+
+
+func _on_FlickerTimer_timeout():
+	flicker_offset.x = rand_range(-MAX_OFFSET,MAX_OFFSET)
+	flicker_offset.y = rand_range(-MAX_OFFSET,MAX_OFFSET)
 	
-	if offset_from_flicker.length() > MAX_OFFSET:
-		offset_from_flicker = offset_from_flicker.normalized() * MAX_OFFSET
-	offset = offset_from_flicker
+	offset = flicker_offset
+
+
+func _on_BurnTimer_timeout():
+	fuel_left *= (1.0-BURN_SPEED)
+	if fuel_left <= 0.5:
+		energy = 0
+		print("GAME OVER")
+
+func _on_Fuel_added():
+	fuel_left += 0.2
+	$FuelAddEffect.play()
+	
