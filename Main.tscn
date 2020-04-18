@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/firelight.png" type="Texture" id=1]
 [ext_resource path="res://assets/background.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fuel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/playerlight.png" type="Texture" id=9]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0.000778198, 0.0358124, 0.000778198, -0.793465, -15.5896, -15.7204, -15.5896, 15.6262, 15.757, 15.6262, 15.757, -15.8863, -15.4237, -15.7204 )
@@ -37,8 +36,12 @@ SPEED = 150
 current = true
 
 [node name="Light2D" type="Light2D" parent="Player"]
-texture = ExtResource( 9 )
+position = Vector2( 0.537002, 1.07398 )
+scale = Vector2( 1.10255, 1.22375 )
+texture = ExtResource( 1 )
+texture_scale = 0.06
 color = Color( 1, 1, 1, 0.737255 )
+energy = 0.9
 shadow_enabled = true
 
 [node name="Fire" parent="." instance=ExtResource( 8 )]
