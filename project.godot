@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="ldjam46"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/fire3.png"
 
 [input]
 

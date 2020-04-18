@@ -16,7 +16,7 @@ func _process(_delta):
 	var scale_factor = min(3.0, 1.0*fuel_left + 0.5)
 	scale = Vector2(scale_factor, scale_factor)
 	energy = min(1.2, fuel_left)
-	$FireCrackle.volume_db = min( 18.0, (fuel_left-1.0)*10.0 )
+	$FireCrackle.volume_db = min( 18.0, (fuel_left-1.0)*20.0 )
 	print($FireCrackle.volume_db)
 
 
