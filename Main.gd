@@ -7,4 +7,5 @@ func _ready():
 
 func _on_Fuel_collected():
 	fuel += 1
-	$FuelCount.text = "Fuel: " + String(fuel)
+	$HUD/FuelCount.text = "Fuel: " + String(fuel)
+	print($HUD/FuelCount.text)
