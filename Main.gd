@@ -48,6 +48,8 @@ func _process(_delta):
 	elif ready_to_restart:
 		if Input.is_action_just_pressed("ui_accept"):
 			var _scene = get_tree().reload_current_scene();
+		if Input.is_action_just_pressed("ui_cancel"):
+			var _scene = get_tree().change_scene("res://Start.tscn")
 
 
 func _on_Fuel_collected():
@@ -59,7 +61,7 @@ func _on_Fuel_consumed():
 	update_fuelcount(fuel_collected)
 	
 func update_fuelcount(fuel_amount):
-	$HUD/FuelCount.text = "Fuel: " + String(fuel_amount)
+	$HUD/FuelCount.text = "Fuel Collected: " + String(fuel_amount)
 
 
 

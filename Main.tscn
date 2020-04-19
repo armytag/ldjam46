@@ -457,7 +457,7 @@ shadow_gradient_length = 2.0
 shadow_filter = 4
 shadow_filter_smooth = 8.0
 shadow_item_cull_mask = 17
-BURN_SPEED = 0.03
+BURN_SPEED = 0.003
 
 [node name="Camera2D" type="Camera2D" parent="Fire"]
 position = Vector2( 0, 60 )
@@ -477,7 +477,7 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 16.0
 custom_fonts/font = SubResource( 7 )
-text = "Fuel: 0"
+text = "Fuel Collected: 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
