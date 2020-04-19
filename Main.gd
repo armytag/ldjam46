@@ -10,6 +10,7 @@ var seconds = 0
 var torch_time_left = 100
 export (float) var MAX_TORCH_TIME
 export (float) var TORCH_BURN_SPEED
+export (int) var SPAWN_RANGE
 var game_over = false
 var ready_to_restart = false
 
@@ -24,9 +25,9 @@ func _ready():
 	for _i in range(fuel_spawn_number):
 		var fuel = Fuel.instance()
 		add_child(fuel)
-		fuel.position = Vector2(rand_range(-2000, 2000), rand_range(-2000,2000))
+		fuel.position = Vector2(rand_range(-SPAWN_RANGE, SPAWN_RANGE), rand_range(-SPAWN_RANGE,SPAWN_RANGE))
 		while fuel.position.distance_to($Fire.position) < 300:
-			fuel.position = Vector2(rand_range(-2000, 2000), rand_range(-2000,2000))
+			fuel.position = Vector2(rand_range(-SPAWN_RANGE, SPAWN_RANGE), rand_range(-SPAWN_RANGE,SPAWN_RANGE))
 		fuel.connect("collected", self, "_on_Fuel_collected")
 
 func _process(_delta):

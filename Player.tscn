@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/playerup1.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/playerright1.png" type="Texture" id=6]
 [ext_resource path="res://assets/playerleft1.png" type="Texture" id=7]
 [ext_resource path="res://assets/playerleft2.png" type="Texture" id=8]
+[ext_resource path="res://assets/playerdown3.png" type="Texture" id=9]
+[ext_resource path="res://assets/playerdown2.png" type="Texture" id=10]
+[ext_resource path="res://assets/playerdown4.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -26,10 +29,10 @@ animations = [ {
 "name": "up",
 "speed": 3.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "down",
-"speed": 4.0
+"speed": 3.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -42,8 +45,8 @@ SPEED = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "up"
-frame = 2
+animation = "down"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

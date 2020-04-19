@@ -394,6 +394,7 @@ Fuel = ExtResource( 7 )
 Torch = ExtResource( 9 )
 MAX_TORCH_TIME = 100.0
 TORCH_BURN_SPEED = 0.4
+SPAWN_RANGE = 3000
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
@@ -478,7 +479,7 @@ shadow_gradient_length = 2.0
 shadow_filter = 4
 shadow_filter_smooth = 8.0
 shadow_item_cull_mask = 17
-BURN_SPEED = 0.003
+BURN_SPEED = 0.004
 
 [node name="Camera2D" type="Camera2D" parent="Fire"]
 position = Vector2( 0, 60 )
@@ -493,6 +494,7 @@ __meta__ = {
 }
 
 [node name="TempleArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TempleArea"]
 shape = SubResource( 27 )
