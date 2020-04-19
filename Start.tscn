@@ -343,7 +343,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Fire"]
 scale = Vector2( 5, 5 )
 frames = SubResource( 2 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="Fire"]
