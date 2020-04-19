@@ -523,7 +523,7 @@ autostart = true
 autostart = true
 
 [node name="RestartTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 [connection signal="fuel_added" from="." to="Fire" method="_on_Fuel_added"]
 [connection signal="collected" from="PlacedLogs/Fuel" to="." method="_on_Fuel_collected"]
 [connection signal="collected" from="PlacedLogs/Fuel2" to="." method="_on_Fuel_collected"]
