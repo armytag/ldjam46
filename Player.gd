@@ -19,5 +19,13 @@ func _physics_process(_delta):
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
+		if velocity.y > 0:
+			$AnimatedSprite.animation = "down"
+		elif velocity.y < 0:
+			$AnimatedSprite.animation = "up"
+		elif velocity.x > 0:
+			$AnimatedSprite.animation = "right"
+		elif velocity.x < 0:
+			$AnimatedSprite.animation = "left"
 	
 	var _movement_vector = move_and_slide(velocity)

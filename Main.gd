@@ -47,6 +47,7 @@ func _process(_delta):
 			torch_time_left = MAX_TORCH_TIME
 			$Player/ReplenishSound.play()
 		update_fuelcount(fuel_collected)
+		
 	elif ready_to_restart:
 		if Input.is_action_just_pressed("ui_accept"):
 			var _scene = get_tree().reload_current_scene();
