@@ -6,8 +6,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Fuel_body_entered(body):
-	emit_signal("collected")
-	queue_free()
+	if body is KinematicBody2D :
+		emit_signal("collected")
+		queue_free()
 
 func _on_Fuel_collected():
 	print("Ooops!")

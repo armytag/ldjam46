@@ -17,7 +17,6 @@ func _process(_delta):
 	scale = Vector2(scale_factor, scale_factor)
 	energy = min(1.2, fuel_left)
 	$FireCrackle.volume_db = min( 18.0, (fuel_left-1.0)*20.0 )
-	print($FireCrackle.volume_db)
 
 
 func _on_FlickerTimer_timeout():
