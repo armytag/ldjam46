@@ -1,5 +1,7 @@
 extends Light2D
 
+signal game_over
+
 export (float) var MAX_OFFSET
 export (float) var FLICKER_CHANGE
 export (float) var BURN_SPEED
@@ -29,8 +31,11 @@ func _on_FlickerTimer_timeout():
 func _on_BurnTimer_timeout():
 	fuel_left *= (1.0-BURN_SPEED)
 	if fuel_left <= 0.5:
-		energy = 0
-		print("GAME OVER")
+		energy = 0.5
+		$BurnTimer.stop()
+		$FireCrackle.stop()
+		$AnimatedSprite.hide()
+		emit_signal("game_over")
 
 func _on_Fuel_added():
 	fuel_left += 0.2

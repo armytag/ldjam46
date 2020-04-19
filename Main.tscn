@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/firelight.png" type="Texture" id=1]
 [ext_resource path="res://assets/background.png" type="Texture" id=2]
@@ -371,6 +371,14 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 size = 32
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=25]
+size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 64
+font_data = ExtResource( 4 )
+
 [node name="Main" type="Node2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 5 )
@@ -417,7 +425,7 @@ position = Vector2( -140.189, -47.3964 )
 light_mask = 2
 position = Vector2( 174.383, -17.0321 )
 z_index = 1
-SPEED = 300
+SPEED = 200
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -445,7 +453,9 @@ shadow_gradient_length = 2.0
 shadow_filter = 4
 shadow_filter_smooth = 8.0
 shadow_item_cull_mask = 17
-BURN_SPEED = 0.002
+BURN_SPEED = 0.1
+
+[node name="Camera2D" type="Camera2D" parent="Fire"]
 
 [node name="FireHighlighter" type="Light2D" parent="."]
 position = Vector2( 0, -8 )
@@ -467,9 +477,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Result" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = 64.0
+margin_right = 20.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 25 )
+text = "After 2487 years, 
+
+
+the sacred flame has finally 
+gone out"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Label" parent="HUD"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -68.0
+custom_fonts/font = SubResource( 26 )
+text = "Press 'ENTER' to start over"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TorchTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="SecondTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="RestartTimer" type="Timer" parent="."]
+wait_time = 2.0
 [connection signal="fuel_added" from="." to="Fire" method="_on_Fuel_added"]
 [connection signal="collected" from="PlacedLogs/Fuel" to="." method="_on_Fuel_collected"]
 [connection signal="collected" from="PlacedLogs/Fuel2" to="." method="_on_Fuel_collected"]
 [connection signal="collected" from="PlacedLogs/Fuel3" to="." method="_on_Fuel_collected"]
+[connection signal="game_over" from="Fire" to="." method="_on_Fire_game_over"]
+[connection signal="timeout" from="SecondTimer" to="." method="_on_SecondTimer_timeout"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
