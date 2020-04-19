@@ -11,7 +11,7 @@ energy = 0.7
 mode = 2
 shadow_enabled = true
 script = ExtResource( 3 )
-BURN_SPEED = 0.2
+BURN_SPEED = 0.1
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )

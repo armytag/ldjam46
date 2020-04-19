@@ -11,7 +11,7 @@ func _ready():
 	$MusicDelayTimer.start()
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://Main.tscn")
+	var _scene = get_tree().change_scene("res://Main.tscn")
 
 
 func _on_MusicDelayTimer_timeout():

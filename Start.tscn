@@ -57,6 +57,7 @@ texture = ExtResource( 8 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Fire"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
+frame = 3
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="Fire"]
