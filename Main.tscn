@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/firelight.png" type="Texture" id=1]
 [ext_resource path="res://assets/background.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fuel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Fire.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Torch.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -383,6 +384,9 @@ font_data = ExtResource( 4 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 5 )
 Fuel = ExtResource( 7 )
+Torch = ExtResource( 9 )
+MAX_TORCH_TIME = 100.0
+TORCH_BURN_SPEED = 0.4
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
@@ -453,7 +457,7 @@ shadow_gradient_length = 2.0
 shadow_filter = 4
 shadow_filter_smooth = 8.0
 shadow_item_cull_mask = 17
-BURN_SPEED = 0.1
+BURN_SPEED = 0.003
 
 [node name="Camera2D" type="Camera2D" parent="Fire"]
 
@@ -489,7 +493,7 @@ margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 custom_fonts/font = SubResource( 25 )
-text = "After 2487 years, 
+text = "After 3,487 years, 
 
 
 the sacred flame has finally 
@@ -503,7 +507,7 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -68.0
+margin_top = -100.0
 custom_fonts/font = SubResource( 26 )
 text = "Press 'ENTER' to start over"
 align = 1
@@ -512,6 +516,7 @@ __meta__ = {
 }
 
 [node name="TorchTimer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="SecondTimer" type="Timer" parent="."]
@@ -524,5 +529,6 @@ wait_time = 2.0
 [connection signal="collected" from="PlacedLogs/Fuel2" to="." method="_on_Fuel_collected"]
 [connection signal="collected" from="PlacedLogs/Fuel3" to="." method="_on_Fuel_collected"]
 [connection signal="game_over" from="Fire" to="." method="_on_Fire_game_over"]
+[connection signal="timeout" from="TorchTimer" to="." method="_on_TorchTimer_timeout"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_SecondTimer_timeout"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]

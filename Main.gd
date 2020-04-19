@@ -3,8 +3,13 @@ extends Node
 signal fuel_added
 
 export (PackedScene) var Fuel
+export (PackedScene) var Torch
+
 var fuel_collected = 0
 var seconds = 0
+var torch_time_left = 100
+export (float) var MAX_TORCH_TIME
+export (float) var TORCH_BURN_SPEED
 var game_over = false
 var ready_to_restart = false
 
@@ -29,8 +34,17 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_select") and fuel_collected > 0:
 			if $Player.position.distance_to($Fire.position) < 100:
 				fuel_collected -= 1
-				update_fuelcount(fuel_collected)
 				emit_signal("fuel_added")
+		if Input.is_action_just_pressed("ui_focus_next") and fuel_collected > 0:
+			fuel_collected -= 1
+			var torch = Torch.instance()
+			add_child(torch)
+			torch.position = $Player.position
+		if Input.is_action_just_pressed("ui_focus_prev") and fuel_collected > 0:
+			print("Reset player torch")
+			fuel_collected -= 1
+			torch_time_left = MAX_TORCH_TIME
+		update_fuelcount(fuel_collected)
 	elif ready_to_restart:
 		if Input.is_action_just_pressed("ui_accept"):
 			get_tree().reload_current_scene();
@@ -46,7 +60,6 @@ func _on_Fuel_consumed():
 	
 func update_fuelcount(fuel_amount):
 	$HUD/FuelCount.text = "Fuel: " + String(fuel_amount)
-	print($HUD/FuelCount.text)
 
 
 
@@ -57,7 +70,7 @@ func _on_Fire_game_over():
 	$Player/Camera2D.current = false
 	$Fire/Camera2D.current = true
 	
-	var result = "After 2,487 years"
+	var result = "After 3,487 years"
 	result += "\n"
 	if seconds >= 60:
 		var minutes = floor(seconds/60)
@@ -81,3 +94,12 @@ func _on_SecondTimer_timeout():
 func _on_RestartTimer_timeout():
 	$HUD/Restart.show()
 	ready_to_restart = true
+
+
+func _on_TorchTimer_timeout():
+	torch_time_left = max(0, torch_time_left-TORCH_BURN_SPEED)
+	var scale_factor = torch_time_left/MAX_TORCH_TIME
+	$Player/TorchLight.texture_scale = scale_factor
+	print(scale_factor)
+	
+	

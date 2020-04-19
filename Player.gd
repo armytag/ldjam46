@@ -20,4 +20,4 @@ func _physics_process(_delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
 	
-	var movement_vector = move_and_slide(velocity)
+	var _movement_vector = move_and_slide(velocity)

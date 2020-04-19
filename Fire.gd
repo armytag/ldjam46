@@ -38,6 +38,6 @@ func _on_BurnTimer_timeout():
 		emit_signal("game_over")
 
 func _on_Fuel_added():
-	fuel_left += 0.2
+	fuel_left += 0.3
 	$FuelAddEffect.play()
 	
