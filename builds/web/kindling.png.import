@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kindling.png-a768cabe0a7c72ecc539df51c938c4f5.stex"
+path="res://.import/kindling.png-a0ed7d5028a2973799294c863c8e146f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://compiled/web/kindling.png"
-dest_files=[ "res://.import/kindling.png-a768cabe0a7c72ecc539df51c938c4f5.stex" ]
+source_file="res://builds/web/kindling.png"
+dest_files=[ "res://.import/kindling.png-a0ed7d5028a2973799294c863c8e146f.stex" ]
 
 [params]
 
