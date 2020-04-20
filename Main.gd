@@ -20,8 +20,9 @@ func _ready():
 	$HUD/FuelCount.show()
 	$HUD/Result.hide()
 	$HUD/Restart.hide()
+	$AmbientShadow.show()
 	
-	var fuel_spawn_number = 500
+	var fuel_spawn_number = 800
 	for _i in range(fuel_spawn_number):
 		var fuel = Fuel.instance()
 		add_child(fuel)
@@ -43,7 +44,6 @@ func _process(_delta):
 			$Player/PlaceTorchSound.play()
 			torch.position = $Player.position
 		if Input.is_action_just_pressed("ui_focus_prev") and fuel_collected > 0:
-			print("Reset player torch")
 			fuel_collected -= 1
 			torch_time_left = MAX_TORCH_TIME
 			$Player/ReplenishSound.play()
@@ -109,11 +109,10 @@ func _on_TorchTimer_timeout():
 	torch_time_left = max(0, torch_time_left-TORCH_BURN_SPEED)
 	var scale_factor = torch_time_left/MAX_TORCH_TIME
 	$Player/TorchLight.texture_scale = scale_factor
-	print(scale_factor)
 
 func _on_WindTimer_timeout():
 	$Player/WindSound.play()
-	$WindTimer.wait_time = rand_range(20,45)
+	$WindTimer.wait_time = rand_range(45, 90)
 	$WindTimer.start()
 
 

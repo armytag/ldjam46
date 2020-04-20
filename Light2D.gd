@@ -15,7 +15,6 @@ func _ready():
 func _process(delta):
 	level -= 0.001
 	energy = level + rand_range(-0.02,0.02)
-#	print(energy)
 	
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):

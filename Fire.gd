@@ -6,7 +6,7 @@ export (float) var MAX_OFFSET
 export (float) var FLICKER_CHANGE
 export (float) var BURN_SPEED
 var flicker_offset = Vector2()
-var fuel_left = 1
+var fuel_left = 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
